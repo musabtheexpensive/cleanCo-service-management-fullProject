@@ -17,10 +17,19 @@ const Services = () => {
     data: services,
     isLoading,
     isError,
+    error,
   } = useQuery({
     queryKey: ["service"],
     queryFn: getServices,
   });
+
+  if (isLoading) {
+    return <p>Loading ...</p>;
+  }
+
+  if (isError) {
+    return <p>Something went Wrong: {error}</p>;
+  }
 
   return (
     <>
