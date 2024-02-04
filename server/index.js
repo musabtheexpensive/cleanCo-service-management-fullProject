@@ -67,6 +67,9 @@ async function run() {
     // http://localhost:5000/api/v1/services             // situation 3
     // http://localhost:5000/api/v1/services?sortField=price&sortOrder=desc         // situation 4
 
+// pagination Format 
+// http://localhost:5000/api/v1/services?
+
     // service get operation here
     app.get("/api/v1/services", async (req, res) => {
       let queryObj = {};
