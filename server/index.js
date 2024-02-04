@@ -63,7 +63,7 @@ async function run() {
     // http://localhost:5000/api/v1/services?category=Home Cleaning                 // situation 2
     // ey api route a 2 tta situation eki api dia handle kora hoyece..... user er req onushar a
     // service get operation here
-    app.get("/api/v1/services", gateman, async (req, res) => {
+    app.get("/api/v1/services", async (req, res) => {
       let queryObj = {};
 
       const category = req.query.category;
@@ -71,7 +71,7 @@ async function run() {
         queryObj.category = category;
       }
 
-      const cursor = serviceCollection.find(query);
+      const cursor = serviceCollection.find(queryObj);
       const result = await cursor.toArray();
       res.send(result);
     });
