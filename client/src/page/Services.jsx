@@ -38,7 +38,7 @@ const Services = () => {
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate
           nobis excepturi delectus, ab id provident, voluptas iste ullam
           repellendus animi eos perspiciatis cumque. Quod sit laboriosam
-          deleniti atque .
+          deleniti atque what and what .
         </Header>
       </Container>
       <Container className="mb-64">
