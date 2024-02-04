@@ -58,9 +58,20 @@ async function run() {
       });
     };
 
+    // filtering // sorting
+    // http://localhost:5000/api/v1/services             // situation 1
+    // http://localhost:5000/api/v1/services?category=Home Cleaning                 // situation 2
+    // ey api route a 2 tta situation eki api dia handle kora hoyece..... user er req onushar a
     // service get operation here
     app.get("/api/v1/services", gateman, async (req, res) => {
-      const cursor = serviceCollection.find();
+      let queryObj = {};
+
+      const category = req.query.category;
+      if (category) {
+        queryObj.category = category;
+      }
+
+      const cursor = serviceCollection.find(query);
       const result = await cursor.toArray();
       res.send(result);
     });
@@ -105,7 +116,7 @@ async function run() {
       // creating token and send to client
       const user = req.body;
       console.log(user);
-      const token = jwt.sign(user, secret, { expiresIn: 60 * 60 });
+      const token = jwt.sign(user, secret, { expiresIn: "1d" });
       // res.send(token)   eta kora jabe na
       res
         .cookie("token", token, {
