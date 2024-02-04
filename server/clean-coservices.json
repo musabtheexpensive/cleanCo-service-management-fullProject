@@ -1,0 +1,168 @@
+[
+    {
+      "name": "Deep Cleaning",
+      "description": "Thorough cleaning targeting hidden and hard-to-reach areas.",
+      "price": 80,
+      "category": "Home Cleaning",
+      "features": [
+        "Deep scrubbing of floors and surfaces",
+        "Cleaning inside cabinets and drawers",
+        "Wiping and sanitizing baseboards"
+      ]
+    },
+    {
+      "name": "Premium Sanitization",
+      "description": "Complete sanitization for a germ-free environment.",
+      "price": 100,
+      "category": "Home Service",
+      "features": [
+        "High-grade disinfectant used",
+        "Sanitizing frequently touched surfaces",
+        "Air purification with HEPA filters"
+      ]
+    },
+    {
+      "name": "Carpet Renewal",
+      "description": "Revitalizing carpets to their original freshness.",
+      "price": 60,
+      "category": "Home Cleaning",
+      "features": [
+        "Steam cleaning for deep dirt removal",
+        "Stain treatment and removal",
+        "Deodorizing for a fresh scent"
+      ]
+    },
+    {
+      "name": "Window Brilliance",
+      "description": "Ensuring crystal-clear windows for a brighter space.",
+      "price": 50,
+      "category": "Home Service",
+      "features": [
+        "Streak-free window cleaning",
+        "Frame and sill detailing",
+        "Removal of cobwebs and debris"
+      ]
+    },
+    {
+      "name": "Kitchen Deep Dive",
+      "description": "Comprehensive cleaning for a spotless kitchen.",
+      "price": 70,
+      "category": "Home Cleaning",
+      "features": [
+        "Degreasing of kitchen appliances",
+        "Cleaning and disinfecting countertops",
+        "Polishing stainless steel surfaces"
+      ]
+    },
+    {
+      "name": "Bathroom Bliss",
+      "description": "Transforming bathrooms into a pristine oasis.",
+      "price": 65,
+      "category": "Home Cleaning",
+      "features": [
+        "Scrubbing and sanitizing bathroom fixtures",
+        "Grout and tile cleaning",
+        "Mold and mildew treatment"
+      ]
+    },
+    {
+      "name": "Dusting Delight",
+      "description": "Thorough dusting for a clean and allergen-free home.",
+      "price": 55,
+      "category": "Home Cleaning",
+      "features": [
+        "Dusting of furniture and decor",
+        "Cleaning light fixtures and ceiling fans",
+        "Vacuuming upholstery and curtains"
+      ]
+    },
+    {
+      "name": "Pet-Friendly Cleanup",
+      "description": "Specialized cleaning for homes with furry friends.",
+      "price": 90,
+      "category": "Office Home Service",
+      "features": [
+        "Pet hair removal from furniture and carpets",
+        "Disinfecting pet-accessible areas",
+        "Neutralizing pet odors"
+      ]
+    },
+    {
+      "name": "Eco-Friendly Refresh",
+      "description": "Cleaning with environmentally friendly products.",
+      "price": 75,
+      "category": "Office Home Cleaning",
+      "features": [
+        "Use of eco-friendly cleaning agents",
+        "Recyclable and biodegradable materials",
+        "Reduced environmental impact"
+      ]
+    },
+    {
+      "name": "Quick Tidy-Up",
+      "description": "Swift cleaning for a fast refresh of living spaces.",
+      "price": 40,
+      "category": "Village Home Cleaning",
+      "features": [
+        "Surface wiping and dusting",
+        "Trash removal",
+        "Basic floor vacuuming"
+      ]
+    },
+    {
+      "name": "Organization Maven",
+      "description": "Decluttering and organizing for a tidy home.",
+      "price": 60,
+      "category": "Village Home Service",
+      "features": [
+        "Closet organization and arrangement",
+        "Storage solutions for efficient space use",
+        "Decluttering of miscellaneous items"
+      ]
+    },
+    {
+      "name": "Appliance TLC",
+      "description": "Maintenance and cleaning for household appliances.",
+      "price": 85,
+      "category": "Home Service",
+      "features": [
+        "Detailed cleaning of kitchen appliances",
+        "Filter replacement and maintenance",
+        "Ensuring optimal appliance performance"
+      ]
+    },
+    {
+      "name": "Post-Party Cleanup",
+      "description": "Restoring order after a lively celebration.",
+      "price": 75,
+      "category": "Event Cleaning",
+      "features": [
+        "Clearing party debris",
+        "Deep cleaning of entertaining spaces",
+        "Trash disposal and recycling"
+      ]
+    },
+    {
+      "name": "Work-from-Home Haven",
+      "description": "Creating a clean and productive home office environment.",
+      "price": 50,
+      "category": "Home Office",
+      "features": [
+        "Desk and workspace organization",
+        "Electronics cleaning and dusting",
+        "Optimizing the work environment"
+      ]
+    },
+    {
+      "name": "Outdoor Oasis Cleanup",
+      "description": "Refreshing outdoor spaces for a welcoming atmosphere.",
+      "price": 70,
+      "category": "Outdoor Cleaning",
+      "features": [
+        "Patio and deck cleaning",
+        "Lawn and garden tidying",
+        "Outdoor furniture cleaning"
+      ]
+    }
+  ]
+  
