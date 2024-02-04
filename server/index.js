@@ -67,8 +67,8 @@ async function run() {
     // http://localhost:5000/api/v1/services             // situation 3
     // http://localhost:5000/api/v1/services?sortField=price&sortOrder=desc         // situation 4
 
-// pagination Format 
-// http://localhost:5000/api/v1/services?
+    // pagination Format
+    // http://localhost:5000/api/v1/services?page=1&limit=10                        // situation 5
 
     // service get operation here
     app.get("/api/v1/services", async (req, res) => {
@@ -79,6 +79,11 @@ async function run() {
       const sortField = req.query.sortField;
       const sortOrder = req.query.sortOrder;
 
+      // pagination code here
+      const page = Number(req.query.page);
+      const limit = Number(req.query.limit);
+      const skip = (page - 1) * limit;
+
       if (category) {
         queryObj.category = category;
       }
@@ -87,9 +92,16 @@ async function run() {
         sortObj[sortField] = sortOrder;
       }
 
-      const cursor = serviceCollection.find(queryObj).sort(sortObj);
+      const cursor = serviceCollection
+        .find(queryObj)
+        .skip(skip)
+        .limit(limit)
+        .sort(sortObj);
       const result = await cursor.toArray();
-      res.send(result);
+
+      // sudhu pagination er jonno ey nicher line ta kora orthath front end kke bujhaite hobe j amar ey koita data ace ... tumi sey onujayi page vaag kore amak daw
+      const total = await serviceCollection.countDocuments();
+      res.send({ total, result });
     });
 
     // service booking operation here
