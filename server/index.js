@@ -58,20 +58,33 @@ async function run() {
       });
     };
 
-    // filtering // sorting
+    // filtering api format
     // http://localhost:5000/api/v1/services             // situation 1
     // http://localhost:5000/api/v1/services?category=Home Cleaning                 // situation 2
     // ey api route a 2 tta situation eki api dia handle kora hoyece..... user er req onushar a
+
+    //  sorting api format
+    // http://localhost:5000/api/v1/services             // situation 3
+    // http://localhost:5000/api/v1/services?sortField=price&sortOrder=desc         // situation 4
+
     // service get operation here
     app.get("/api/v1/services", async (req, res) => {
       let queryObj = {};
+      let sortObj = {};
 
       const category = req.query.category;
+      const sortField = req.query.sortField;
+      const sortOrder = req.query.sortOrder;
+
       if (category) {
         queryObj.category = category;
       }
 
-      const cursor = serviceCollection.find(queryObj);
+      if (sortField && sortOrder) {
+        sortObj[sortField] = sortOrder;
+      }
+
+      const cursor = serviceCollection.find(queryObj).sort(sortObj);
       const result = await cursor.toArray();
       res.send(result);
     });
