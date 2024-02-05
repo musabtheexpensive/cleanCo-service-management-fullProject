@@ -4,7 +4,7 @@ import Header from "../components/layout/ui/Header";
 import useAxios from "../hooks/useAxios";
 import { useQuery } from "@tanstack/react-query";
 import ServiceCard from "../components/layout/ui/ServiceCard";
-// import capitalizeWords from "../utils/capitalizeWords";
+import { capitalizeWords } from "../utils/capitalizeWords";
 
 const categories = [
   "Outdoor Living",
@@ -23,8 +23,10 @@ const Services = () => {
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
 
+  console.log(price);
+
   const getServices = async () => {
-    const res = await axios.get("/services");
+    const res = await axios.get(`/services?sortField=price&sortOrder=${price}`);
     return res;
   };
 
@@ -34,7 +36,7 @@ const Services = () => {
     isError,
     error,
   } = useQuery({
-    queryKey: ["service"],
+    queryKey: ["service", price],
     queryFn: getServices,
   });
 
@@ -75,7 +77,7 @@ const Services = () => {
               </option>
               {categories.map((item) => (
                 <option key={item} value={item}>
-                  {/* {capitalizeWords(item)} */}
+                  {capitalizeWords(item)}
                 </option>
               ))}
             </select>

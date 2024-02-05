@@ -71,7 +71,7 @@ async function run() {
     // http://localhost:5000/api/v1/services?page=1&limit=10                        // situation 5
 
     // service get operation here
-    app.get("/api/v1/services", async (req, res) => {
+    app.get("/api/v1/services",gateman, async (req, res) => {
       let queryObj = {};
       let sortObj = {};
 
