@@ -26,7 +26,7 @@ const Services = () => {
   console.log(price);
 
   const getServices = async () => {
-    const res = await axios.get(`/services?sortField=price&sortOrder=${price}`);
+    const res = await axios.get(`/services?sortField=price&sortOrder=${price}&category=${category}`);
     return res;
   };
 
@@ -36,13 +36,13 @@ const Services = () => {
     isError,
     error,
   } = useQuery({
-    queryKey: ["service", price],
+    queryKey: ["service", price,category],
     queryFn: getServices,
   });
 
-  if (isLoading) {
-    return <p>Loading ...</p>;
-  }
+  // if (isLoading) {
+  //   return <p>Loading ...</p>;
+  // }
 
   if (isError) {
     return <p>Something went Wrong: {error}</p>;
@@ -100,12 +100,12 @@ const Services = () => {
         </div>
       </Container>
       <Container className="mb-10">
-        <div className="grid grid-cols-3 gap-10">
+       {isLoading? <p>Loading...</p>:<div className="grid grid-cols-3 gap-10">
           {/* Service Cards goes here */}
           {services?.data?.result?.map((item) => (
             <ServiceCard key={item?.id} service={item} />
           ))}
-        </div>
+        </div>}
       </Container>
       <Container className="mb-64 flex justify-end">
         <div className="join border-2 border-primary">
