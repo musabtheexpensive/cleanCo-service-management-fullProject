@@ -8,7 +8,7 @@ import useAxios from "../hooks/useAxios";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { login, googleLogin } = useAuth();
+  const { login, googleLogin, logout } = useAuth();
   const navigate = useNavigate();
   const axios = useAxios();
 
@@ -19,12 +19,18 @@ const Login = () => {
     try {
       const user = await login(email, password);
       console.log(user.user.email);
+
       const res = axios.post("/auth/access-token", {
         email: user.user.email,
       });
-      console.log(res);
-      toast.success("Logged In...", { id: toastId });
-      navigate("/");
+
+      if ((await res).data.success) {
+        toast.success("Logged In...", { id: toastId });
+        navigate("/");
+      } else {
+        logout();
+      }
+      
     } catch (err) {
       toast.error(err.message, { id: toastId });
     }
