@@ -5,7 +5,7 @@ import Footer from "./Footer";
 
 const MainLayout = ({ children }) => {
   return (
-    <div className="drawer">
+    <div className="drawer ">
       <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col">
         {/* Navbar */}
@@ -14,7 +14,7 @@ const MainLayout = ({ children }) => {
         </div>
         {/* Page content here */}
         {children}
-        <Footer/>
+        <Footer  />
       </div>
       <div className="drawer-side">
         <label
@@ -24,7 +24,7 @@ const MainLayout = ({ children }) => {
         ></label>
         <div className="menu p-4 w-80 min-h-full bg-base-200">
           {/* Sidebar content here */}
-         <Sidebar/>
+          <Sidebar />
         </div>
       </div>
     </div>
