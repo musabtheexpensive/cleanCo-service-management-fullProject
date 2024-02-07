@@ -58,6 +58,15 @@ async function run() {
       });
     };
 
+   // specific service get  operation start here
+   app.get("/api/v1/services/:serviceId", async (req, res) => {
+    const id = req.params.serviceId;
+    const query = { _id: new ObjectId(id) };
+    const result = await serviceCollection.findOne(query);
+    res.send(result);
+  });
+
+
     // filtering api format
     // http://localhost:5000/api/v1/services             // situation 1
     // http://localhost:5000/api/v1/services?category=Home Cleaning                 // situation 2

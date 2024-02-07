@@ -9,6 +9,7 @@ import AddServices from "../page/AddServices";
 import Home from "../page/Home";
 import Services from "../page/Services";
 import PrivateRoute from "./PrivateRoute";
+import Booking from "../page/Booking";
 
 const routes = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ const routes = createBrowserRouter([
             <Services />
           </PrivateRoute>
         ),
+      },
+      {
+        path: 'booking/:id',
+        element: <Booking />,
       },
     ],
   },
