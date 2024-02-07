@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const ServiceCard = ({ service }) => {
   return (
-    <div className="border-2 border-primary bg-primary h-[400px] flex flex-col rounded-[15px] overflow-hidden transition-all hover:scale-105  hover:shadow-2xl group">
+    <div className="border-2 border-teal-300 bg-teal-300 h-[400px] flex flex-col rounded-[15px] overflow-hidden transition-all hover:scale-105  hover:shadow-2xl group">
       <div className="w-full flex-1 flex justify-center items-center">
         <h1 className="text-2xl font-semibold">{service?.name}</h1>
       </div>
@@ -14,7 +14,7 @@ const ServiceCard = ({ service }) => {
         <p className="text-center text-2xl mb-2">{service?.price}</p>
         <Link
           to={`/booking/${service?._id}`}
-          className="btn btn-primary w-full"
+          className="btn btn-accent w-full"
         >
           Book
         </Link>

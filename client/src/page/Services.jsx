@@ -22,11 +22,15 @@ const Services = () => {
   const axios = useAxios();
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
+  const [page, setPage] = useState(1);
+  const limit = 5;
 
   console.log(price);
 
   const getServices = async () => {
-    const res = await axios.get(`/services?sortField=price&sortOrder=${price}&category=${category}`);
+    const res = await axios.get(
+      `/services?sortField=price&sortOrder=${price}&category=${category}$page=${page}&limit=${limit}`
+    );
     return res;
   };
 
@@ -36,7 +40,7 @@ const Services = () => {
     isError,
     error,
   } = useQuery({
-    queryKey: ["service", price,category],
+    queryKey: ["service", price, category, ],
     queryFn: getServices,
   });
 
@@ -44,10 +48,20 @@ const Services = () => {
   //   return <p>Loading ...</p>;
   // }
 
+  const handlePrevious = () => {
+    if (page > 1) setPage(page - 1);
+  };
+  const handleNext = () => {
+    if (page < totalPage) setPage(page + 1);
+  };
+
+  const totalPage = Math.ceil(Number(services?.data?.total) / limit);
+  console.log(totalPage);
+
   if (isError) {
     return <p>Something went Wrong: {error}</p>;
   }
-
+  console.log(services);
   return (
     <>
       <Container>
@@ -100,21 +114,49 @@ const Services = () => {
         </div>
       </Container>
       <Container className="mb-10">
-       {isLoading? <p>Loading...</p>:<div className="grid grid-cols-3 gap-10">
-          {/* Service Cards goes here */}
-          {services?.data?.result?.map((item) => (
-            <ServiceCard key={item?.id} service={item} />
-          ))}
-        </div>}
+        {isLoading ? (
+          <p>Loading...</p>
+        ) : (
+          <div className="grid grid-cols-3 gap-10">
+            {/* Service Cards goes here */}
+            {services?.data?.result?.map((item) => (
+              <ServiceCard key={item?.id} service={item} />
+            ))}
+          </div>
+        )}
       </Container>
       <Container className="mb-64 flex justify-end">
-        <div className="join border-2 border-primary">
-          <button className="join-item btn btn-ghost">«</button>
-          <button className="join-item btn btn-ghost"></button>
-          <button className="join-item btn btn-ghost">»</button>
-          <button className="join-item btn btn-ghost">»</button>
-          <button className="join-item btn btn-ghost">»</button>
-        </div>
+        {isLoading ? (
+          <p>Loading...</p>
+        ) : (
+          <div className="join border-2 border-primary">
+            <button
+              onClick={handlePrevious}
+              className="join-item btn btn-ghost"
+            >
+              «
+            </button>
+            {[...Array(totalPage).fill(0)]?.map((item, index) => {
+              const pageNumber = index + 1;
+              return (
+                <button
+                  key={pageNumber}
+                  onClick={() => setPage(pageNumber)}
+                  className={`${
+                    pageNumber === page
+                      ? "join-item btn btn-primary"
+                      : "join-item btn btn-ghost"
+                  }`}
+                >
+                  {pageNumber}
+                </button>
+              );
+            })}
+            <button onClick={handleNext} className="join-item btn btn-ghost">
+              »
+            </button>
+          </div>
+        )}
       </Container>
     </>
   );
