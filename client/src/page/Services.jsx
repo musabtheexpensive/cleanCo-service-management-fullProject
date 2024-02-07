@@ -23,13 +23,13 @@ const Services = () => {
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
   const [page, setPage] = useState(1);
-  const limit = 5;
+  const limit = 6;
 
   console.log(price);
 
   const getServices = async () => {
     const res = await axios.get(
-      `/services?sortField=price&sortOrder=${price}&category=${category}$page=${page}&limit=${limit}`
+      `/services?sortField=price&sortOrder=${price}&category=${category}&page=${page}&limit=${limit}`
     );
     return res;
   };
@@ -40,7 +40,7 @@ const Services = () => {
     isError,
     error,
   } = useQuery({
-    queryKey: ["service", price, category, ],
+    queryKey: ["service", price, category,page],
     queryFn: getServices,
   });
 
