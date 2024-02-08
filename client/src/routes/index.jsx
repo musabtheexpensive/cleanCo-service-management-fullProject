@@ -10,6 +10,8 @@ import Home from "../page/Home";
 import Services from "../page/Services";
 import PrivateRoute from "./PrivateRoute";
 import Booking from "../page/Booking";
+import Profile from "../page/Profile";
+import TrackOrder from "../page/TrackOrder";
 
 const routes = createBrowserRouter([
   {
@@ -49,6 +51,20 @@ const routes = createBrowserRouter([
   {
     path: "/register",
     element: <Register />,
+  },
+  {
+    path: '/user',
+    element: <App />,
+    children: [
+      {
+        index: true,
+        element: <Profile />,
+      },
+      {
+        path: 'orders',
+        element: <TrackOrder />,
+      },
+    ],
   },
   {
     path: "/admin",
