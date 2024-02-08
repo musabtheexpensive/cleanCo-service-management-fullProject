@@ -6,17 +6,55 @@ import Container from "../components/layout/ui/Container";
 const TrackOrder = () => {
   const axios = useAxios();
 
-  const {data:bookings} = useQuery({
+  const { data: bookings } = useQuery({
     queryKey: ["booking"],
     queryFn: async () => {
       const email = auth.currentUser.email;
-      const res = await axios.get(`/v1/user/get-booking?email=${email}`);
+      const res = await axios.get(`/user/bookings?email=${email}`);
       return res;
     },
   });
+  console.log(bookings);
   return (
     <Container>
-      <h1>TrackOrder</h1>
+      <div className="flex justify-evenly my-4">
+        <h2 className="text-3xl">Total Booking: {bookings?.data?.length}</h2>
+      </div>
+      <div className="overflow-x-auto">
+        <table className="table table-zebra w-full">
+          {/* head */}
+          <thead>
+            <tr>
+              <th></th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>ServiceName</th>
+              <th>Cancel</th>
+            </tr>
+          </thead>
+          <tbody>
+            {bookings?.data?.map((item, index) => (
+              <tr key={item._id}>
+                <th>{index + 1}</th>
+                <td>{item.name}</td>
+                <td>{item.email}</td>
+                <td>{item.phone}</td>
+                <td>{item.serviceName}</td>
+                <td>
+                  <button
+                    // onClick={() => handleDeleteUser(user)}
+                    className="btn btn-error btn-lg"
+                  >
+                    {/* <FaTrashAlt className="text-red-600"></FaTrashAlt> */}
+                    Cancel
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </Container>
   );
 };

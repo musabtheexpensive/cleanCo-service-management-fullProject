@@ -58,14 +58,13 @@ async function run() {
       });
     };
 
-   // specific service get  operation start here
-   app.get("/api/v1/services/:serviceId", async (req, res) => {
-    const id = req.params.serviceId;
-    const query = { _id: new ObjectId(id) };
-    const result = await serviceCollection.findOne(query);
-    res.send(result);
-  });
-
+    // specific service get  operation start here
+    app.get("/api/v1/services/:serviceId", async (req, res) => {
+      const id = req.params.serviceId;
+      const query = { _id: new ObjectId(id) };
+      const result = await serviceCollection.findOne(query);
+      res.send(result);
+    });
 
     // filtering api format
     // http://localhost:5000/api/v1/services             // situation 1
@@ -80,7 +79,7 @@ async function run() {
     // http://localhost:5000/api/v1/services?page=1&limit=10                        // situation 5
 
     // service get operation here
-    app.get("/api/v1/services",gateman, async (req, res) => {
+    app.get("/api/v1/services", gateman, async (req, res) => {
       let queryObj = {};
       let sortObj = {};
 
@@ -122,7 +121,7 @@ async function run() {
 
     // user specific get by user email booking operation here
     // orthatt j user mail j koita booking hoice thik sey koita booking ee just dekhabo
-    app.get("/api/v1/user/get-booking", gateman, async (req, res) => {
+    app.get("/api/v1/user/bookings", gateman, async (req, res) => {
       const queryEmail = req.query.email;
       const tokenEmail = req.user.email;
 
