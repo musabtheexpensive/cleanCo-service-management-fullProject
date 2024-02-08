@@ -6,7 +6,11 @@ import Container from "../components/layout/ui/Container";
 const TrackOrder = () => {
   const axios = useAxios();
 
-  const { data: bookings } = useQuery({
+  const {
+    data: bookings,
+    isLoading,
+    isError,
+  } = useQuery({
     queryKey: ["booking"],
     queryFn: async () => {
       const email = auth.currentUser.email;
@@ -14,6 +18,14 @@ const TrackOrder = () => {
       return res;
     },
   });
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (isError) {
+    return <div>Error fetching data</div>;
+  }
+
   console.log(bookings);
   return (
     <Container>
