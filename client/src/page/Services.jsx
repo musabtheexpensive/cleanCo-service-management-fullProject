@@ -125,11 +125,11 @@ const Services = () => {
           </div>
         )}
       </Container>
-      <Container className="mb-64 flex justify-end">
+      <Container className="mb-64 flex justify-end ">
         {isLoading ? (
           <p>Loading...</p>
         ) : (
-          <div className="join border-2 border-primary">
+          <div className="join float-right border-2 border-primary mt-8">
             <button
               onClick={handlePrevious}
               className="join-item btn btn-ghost"

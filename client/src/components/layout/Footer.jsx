@@ -3,7 +3,7 @@ import Container from "./ui/Container";
 const Footer = () => {
   return (
     <Container>
-      <div className="flex justify-between gap-10">
+      <div className="flex justify-between gap-10 mt-16">
         <div>
           <h1 className="text-xl font-semibold mb-2">Clean Co.</h1>
           <p className="max-w-[35ch] font-medium">

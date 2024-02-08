@@ -2,12 +2,12 @@ import { useState } from "react";
 import useAuth from "../hooks/useAuth";
 import Container from "../components/layout/ui/Container";
 import useAxios from "../hooks/useAxios";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 
 const Booking = () => {
   const { user } = useAuth();
-  const [name, setName] = useState("");
+  const [customerName, setCustomerName] = useState("");
   const [email, setEmail] = useState("");
   const [date, setDate] = useState("");
   const [timeSlot, setTimeSlot] = useState("");
@@ -24,12 +24,20 @@ const Booking = () => {
     },
   });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  // use mutation in tanstack query
+  const { mutate } = useMutation({
+    mutationKey: ["booking"],
+    mutationFn: (bookingData) => {
+      return axios.post("/user/create-booking", bookingData);
+    },
+  });
 
-    const data = { name, email, date, timeSlot, address };
-    console.log(data);
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+
+  //   const data = { name, email, date, timeSlot, address };
+  //   console.log(data);
+  // };
 
   return (
     <Container className="my-40">
@@ -55,7 +63,7 @@ const Booking = () => {
           </div>
         </div>
         <div className="card w-full max-w-md shadow-2xl bg-base-100">
-          <form className="card-body" onSubmit={handleSubmit}>
+          <form className="card-body">
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Name</span>
@@ -65,7 +73,7 @@ const Booking = () => {
                 placeholder="name"
                 className="input input-bordered"
                 required
-                onBlur={(e) => setName(e.target.value)}
+                onBlur={(e) => setCustomerName(e.target.value)}
               />
             </div>
             <div className="form-control">
@@ -116,7 +124,23 @@ const Booking = () => {
             </div>
 
             <div className="form-control mt-2">
-              <button className="btn btn-primary">Book</button>
+              <button
+              type="button"
+                onClick={() =>
+                  mutate({
+                    customerName,
+                    email,
+                    date,
+                    timeSlot,
+                    address,
+                    service: service?.data?.name,
+                    status: "pending",
+                  })
+                }
+                className="btn btn-primary"
+              >
+                Book
+              </button>
             </div>
           </form>
         </div>

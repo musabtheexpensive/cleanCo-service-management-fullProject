@@ -14,7 +14,7 @@ const MainLayout = ({ children }) => {
         </div>
         {/* Page content here */}
         {children}
-        <Footer  />
+        <Footer />
       </div>
       <div className="drawer-side">
         <label
