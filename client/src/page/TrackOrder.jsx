@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 
 const TrackOrder = () => {
   const axios = useAxios();
-const queryClient=useQueryClient();
+  const queryClient = useQueryClient();
   const {
     data: bookings,
     isLoading,
@@ -19,9 +19,9 @@ const queryClient=useQueryClient();
       return res;
     },
   });
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+  // if (isLoading) {
+  //   return <div>Loading...</div>;
+  // }
 
   if (isError) {
     return <div>Error fetching data</div>;
@@ -33,9 +33,10 @@ const queryClient=useQueryClient();
     mutationFn: (id) => {
       return axios.delete(`/user/cancel-booking/${id}`);
     },
-    onSuccess:()=>{
-      toast.success("Booking Deleted Successfully")
-    }
+    onSuccess: () => {
+      toast.success("Your booking has been completely deleted");
+      queryClient.invalidateQueries({ queryKey: ["booking"] });
+    },
   });
 
   console.log(bookings);
@@ -57,26 +58,30 @@ const queryClient=useQueryClient();
               <th>Cancel Booking</th>
             </tr>
           </thead>
-          <tbody>
-            {bookings?.data?.map((item, index) => (
-              <tr key={item._id}>
-                <th>{index + 1}</th>
-                <td>{item?.customerName}</td>
-                <td>{item?.email}</td>
+          {isLoading ? (
+            <p>Loading...</p>
+          ) : (
+            <tbody>
+              {bookings?.data?.map((item, index) => (
+                <tr key={item._id}>
+                  <th>{index + 1}</th>
+                  <td>{item?.customerName}</td>
+                  <td>{item?.email}</td>
 
-                <td>{item?.service}</td>
-                <td>
-                  <button
-                    onClick={() => mutate(item._id)}
-                    className="btn btn-error btn-lg"
-                  >
-                    {/* <FaTrashAlt className="text-red-600"></FaTrashAlt> */}
-                    Cancel
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
+                  <td>{item?.service}</td>
+                  <td>
+                    <button
+                      onClick={() => mutate(item._id)}
+                      className="btn btn-error btn-lg"
+                    >
+                      {/* <FaTrashAlt className="text-red-600"></FaTrashAlt> */}
+                      Cancel
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          )}
         </table>
       </div>
     </Container>
