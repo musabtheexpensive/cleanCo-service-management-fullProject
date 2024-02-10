@@ -1,8 +1,9 @@
 const express = require("express");
 const app = express();
-const port = 5000;
+const port =process.env.PORT || 5000;
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 const jwt = require("jsonwebtoken");
+require("dotenv").config();
 const secret = "amikawkebolbona";
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
@@ -19,7 +20,7 @@ app.use(
 
 // DB URI
 const uri =
-  "mongodb+srv://cleancoservices:chdRlWhV5fJvtYZJ@cluster0.3mpc6hz.mongodb.net/clean-co?retryWrites=true&w=majority";
+  `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.3mpc6hz.mongodb.net/clean-co?retryWrites=true&w=majority`;
 
 // MongoDB Connection
 const client = new MongoClient(uri, {
