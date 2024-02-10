@@ -25,8 +25,6 @@ const Services = () => {
   const [page, setPage] = useState(1);
   const limit = 6;
 
-  console.log(price);
-
   const getServices = async () => {
     const res = await axios.get(
       `/services?sortField=price&sortOrder=${price}&category=${category}&page=${page}&limit=${limit}`
@@ -40,7 +38,7 @@ const Services = () => {
     isError,
     error,
   } = useQuery({
-    queryKey: ["service", price, category,page],
+    queryKey: ["service", price, category, page],
     queryFn: getServices,
   });
 

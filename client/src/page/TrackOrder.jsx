@@ -40,9 +40,9 @@ const TrackOrder = () => {
               <th></th>
               <th>Name</th>
               <th>Email</th>
-              <th>Phone</th>
-              <th>ServiceName</th>
-              <th>Cancel</th>
+
+              <th>Service Name</th>
+              <th>Cancel Booking</th>
             </tr>
           </thead>
           <tbody>
@@ -51,8 +51,8 @@ const TrackOrder = () => {
                 <th>{index + 1}</th>
                 <td>{item.name}</td>
                 <td>{item.email}</td>
-                <td>{item.phone}</td>
-                <td>{item.serviceName}</td>
+
+                <td>{item.service}</td>
                 <td>
                   <button
                     // onClick={() => handleDeleteUser(user)}
